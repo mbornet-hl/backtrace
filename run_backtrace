@@ -1,0 +1,20 @@
+#!/bin/bash
+
+./backtrace | hl -ei    \
+     -1m 'fct_alpha'                         \
+     -3b 'fct_beta'                          \
+     -3y 'fct_gamma'                         \
+     -3Y 'fct_terminal[a-z_]+'               \
+     -2B 'fct_print_trace'                   \
+     -3c '0x[0-9a-f]+'                       \
+     -3g '\<(backtrace)\>'                   \
+     -3r '([^ ]+__libc_start_main|main)'     \
+     -3w '.+'
+
+# ./names | hl -ei    \
+#      -3y '\<(fct_(alpha|beta|gamma)[()]*)'   \
+#    -3Y '\<fct_terminal[a-z_]+'             \
+#      -3c '0x[0-9a-f]+'                       \
+#      -3g '\<(names|numbers)\>'               \
+#      -3r '([^ ]+__libc_start_main|main)'   \
+#    -3w '.+'
